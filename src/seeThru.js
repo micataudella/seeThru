@@ -313,7 +313,7 @@
 		};
 
 		/**
-		* @method stopRendering
+		* @method teardown
 		* ends the animation loop, removes the canvas elements and unhides the video
 		* @returns self
 		* @API public
@@ -525,6 +525,13 @@
 					this._video.addEventListener('ended', function(){
 						self._video.currentTime = 0;
 						self._video.play();
+					});
+				} else {
+					this._video.addEventListener('ended', function(){
+						self._seeThru.stopRendering();
+						self._video.addEventListener('play', function(){
+							self._seeThru.stopRendering();
+						});
 					});
 				}
 
