@@ -1,6 +1,6 @@
 {
-  "name": "seethru",
-  "description": "HTML5 video with alpha channel transparencies",
+  "name": "seethru-r",
+  "description": "HTML5 video with alpha channel transparencies - edited to support rotated videos (with alpha channel on the right side)",
   "version": "3.1.0",
   "author": {
     "name": "Frederik Ring",
@@ -11,7 +11,7 @@
     "test": "karma start karma.conf.js"
   },
   "main": "src/seeThru.js",
-  "repository": "https://github.com/m90/seeThru.git",
+  "repository": "https://github.com/micataudella/seeThru.git",
   "homepage": "https://github.com/m90/seeThru",
   "bugs": {
     "url": "https://github.com/m90/seeThru/issues"
@@ -26,7 +26,8 @@
     "alpha-channel",
     "keying",
     "canvas",
-    "jquery-plugin"
+    "jquery-plugin",
+    "rotate"
   ],
   "license": "MIT",
   "devDependencies": {

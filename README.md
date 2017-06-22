@@ -1,4 +1,4 @@
-# seeThru - HTML5 video with alpha channel transparencies
+# seeThru - HTML5 video with alpha channel transparencies - edited to support rotated videos (with alpha channel on the right side)
 
 [![Build Status](https://travis-ci.org/m90/seeThru.svg?branch=master)](https://travis-ci.org/m90/seeThru)
 

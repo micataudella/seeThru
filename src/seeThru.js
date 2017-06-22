@@ -255,9 +255,9 @@
 			if (lastDrawnFrameTime !== currentFrameTime) {
 				lastDrawnFrameTime = currentFrameTime;
 
-				buffer.drawImage(video, 0, 0, dimensions.width, dimensions.height * divisor); //scales if <video>-dimensions are not matching
+				buffer.drawImage(video, 0, 0, dimensions.width * divisor, dimensions.height); //scales if <video>-dimensions are not matching
 				image = buffer.getImageData(0, 0, dimensions.width, dimensions.height);
-				alphaData = buffer.getImageData(0, dimensions.height, dimensions.width, dimensions.height).data; //grab from video;
+				alphaData = buffer.getImageData(dimensions.width, 0, dimensions.width, dimensions.height).data; //grab from video;
 
 				if (options.unmult){ unmultiply(image, alphaData); }
 
@@ -366,22 +366,22 @@
 
 		if (!dimensions.height || !dimensions.width){ //we need to find out at least one dimension parameter as it is not explicitly set
 			if (!video.width && !video.height){ //<video> has no width- or height-attribute -> source dimensions from video source meta
-				dimensions.width = dimensions.width || video.videoWidth;
-				dimensions.height = dimensions.height || video.videoHeight / divisor;
+				dimensions.width = dimensions.width || video.videoWidth / divisor;
+				dimensions.height = dimensions.height || video.videoHeight;
 			} else if (!video.height){ //<video> has no height-attribute -> source dimensions from video source meta
 				dimensions.width = dimensions.width || elementDimensions.width;
-				dimensions.height = dimensions.height || elementDimensions.width / (video.videoWidth / Math.floor(video.videoHeight / divisor));
+				dimensions.height = dimensions.height || elementDimensions.width / (Math.floor(video.videoWidth / divisor) / video.videoHeight);
 			} else if (!video.width){ //<video> has no height-attribute -> source dimensions from video source meta
-				dimensions.width = dimensions.width || elementDimensions.height * (video.videoWidth / Math.floor(video.videoHeight / divisor));
+				dimensions.width = dimensions.width || elementDimensions.height * (Math.floor(video.videoWidth / divisor) / video.videoHeight);
 				dimensions.height = dimensions.height || elementDimensions.height;
 			} else { //get values from height and width attributes of <video>
-				dimensions.width = dimensions.width || elementDimensions.width;
-				dimensions.height = dimensions.height || elementDimensions.height / divisor;
+				dimensions.width = dimensions.width || elementDimensions.width / divisor;
+				dimensions.height = dimensions.height || elementDimensions.height;
 			}
 		}
 
-		bufferCanvas.width = dimensions.width;
-		bufferCanvas.height = dimensions.height * 2;
+		bufferCanvas.width = dimensions.width * 2;
+		bufferCanvas.height = dimensions.height;
 		bufferCanvas.style.display = 'none';
 		bufferCanvas.className = 'seeThru-buffer';
 

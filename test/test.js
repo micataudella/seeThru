@@ -2,7 +2,7 @@ QUnit.module('seeThru', {
 	beforeEach: function(){
 		document.body.innerHTML = `
 			<video onended="this.play();" autoplay loop id="test-video">
-				<source src="http://localhost:9876/base/media/kolor.mp4" type="video/mp4" />
+				<source src="http://localhost:9876/base/media/kolorR.mp4" type="video/mp4" />
 			</video>
 		`;
 	},
@@ -20,8 +20,8 @@ QUnit.test('default config', function(assert){
 		assert.ok($('.seeThru-display').length, 'display canvas is created');
 		assert.ok($('.seeThru-display').is(':visible'), 'display canvas is shown');
 		assert.ok(!$('.seeThru-buffer').is(':visible'), 'buffer canvas is hidden');
-		assert.equal($testvideo.height(), $('.seeThru-display').height() * 2, 'height is correct');
-		assert.equal($testvideo.width(), $('.seeThru-display').width(), 'width is correct');
+		assert.equal($testvideo.height(), $('.seeThru-display').height(), 'height is correct');
+		assert.equal($testvideo.width(), $('.seeThru-display').width() * 2, 'width is correct');
 
 		instance.revert();
 
